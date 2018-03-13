@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+
+{% load staticfiles %}
+
+<html>
+  <head>
+    <title>GameTime</title>
+  </head>
+
+  <body>
+    <h1>Welcome to GameTime</h1>
+    <div id="nav_bar" style = " list-style-type:none; margin:0; padding:0;">
+      <ul>
+        <li> <a href="/basic/about/">About</a><br /></li>
+        <li> <a href="/basic/football/">Football</a><br /></li>
+        <li> <a href="/basic/american_football/">American Football</a><br /></li>
+        <li> <a href="/basic/basketball/">Basketball</a><br /></li>
+        <li> <a href="/basic/ice_hockey/">Ice Hockey</a><br /></li>
+        <li> <a href="/basic/rugby/">Rugby</a><br /></li>
+        <li> <a href="/basic/cricket/">Cricket</a><br /></li>
+        <li> <a href="/basic/tennis/">Tennis</a><br /></li>
+        <li> <a href="/basic/mma/">MMA</a><br /></li>
+      </ul>
+    </div>
+
+
+    <img src={% static "images/celtic.jpg" %} alt="celtic"  />
+
+  </body>
+
+
+</html>
