@@ -17,6 +17,9 @@ class Team(models.Model):
     follower = models.ForeignKey(User)
     thumbnail = models.ImageField(upload_to=False,height_field=100,width_field=200,max_length=100)
 
+    class Meta:
+        verbose_name_plural = 'Teams'
+
     def __str__(self):
         return self.name
 
