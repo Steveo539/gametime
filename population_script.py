@@ -1,3 +1,4 @@
+import os
 os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'gametime.settings')
 import django
 django.setup()
