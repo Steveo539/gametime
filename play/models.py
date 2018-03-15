@@ -14,8 +14,11 @@ class User(models.Model):
 class Team(models.Model):
     #team_id = models.IntegerField(unique=True)
     name = models.CharField(max_length=128, unique=True)
-    follower = models.ForeignKey(User)
-    thumbnail = models.ImageField(upload_to=False,height_field=100,width_field=200,max_length=100)
+    sport = models.CharField(max_length=30, unique=False, default="N/A")
+    country = models.CharField(max_length=50, unique=False, default="N/A")
+    league = models.CharField(max_length=100, unique=False, default="N/A")
+    follower = models.ForeignKey(User, null=True)
+    thumbnail = models.ImageField(upload_to='team_logos/',null=True)
 
     def __str__(self):
         return self.name
