@@ -9,16 +9,20 @@ def about(request):
     return render(request, 'play/about.html', context={})
 
 def signup(request):
-    return HttpResponse("This is the Signup page")
+    return render(request, 'play/signup.html',context={})
 
 def login(request):
-    return HttpResponse("This is the Login page")
+    return render(request, 'play/login.html',context={})
 
 def profile(request):
     return HttpResponse("This is the Profile page")
 
 def football(request):
-    return HttpResponse("This is the Football page")
+    
+    context={"leagues":["BPL","SPL", "NIFL"]}
+
+    return render(request, 'play/football.html', context)
+
 def american_football(request):
     return HttpResponse("This is the American Football page")
 def basketball(request):
