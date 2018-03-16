@@ -18,7 +18,7 @@ class Team(models.Model):
     country = models.CharField(max_length=50, unique=False, default="N/A")
     league = models.CharField(max_length=100, unique=False, default="N/A")
     follower = models.ForeignKey(User, null=True)
-    thumbnail = models.ImageField(upload_to='team_logos/',null=True)
+    thumbnail = models.CharField(max_length=250, default="N/A")
 
     class Meta:
         verbose_name_plural = 'Teams'
