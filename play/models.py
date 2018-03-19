@@ -1,10 +1,10 @@
 from django.db import models
 
 # Create your models here.
-class User(models.Model):
+class UserProfile(models.Model):
     #I believe that IDs are automatically assigned so i'm commenting this field out for now
     #user_id = models.IntegerField(unique=True)
-    username =models.CharField(max_length=30, unique=True)
+    username = models.CharField(max_length=30, unique=True)
     password = models.CharField(max_length=30,unique=True)
     profile_pic = models.ImageField(upload_to=True,height_field=30,width_field=60,max_length=100)
 
@@ -17,8 +17,8 @@ class Team(models.Model):
     sport = models.CharField(max_length=30, unique=False, default="N/A")
     country = models.CharField(max_length=50, unique=False, default="N/A")
     league = models.CharField(max_length=100, unique=False, default="N/A")
-    follower = models.ForeignKey(User, null=True)
-    thumbnail = models.ImageField(upload_to='team_logos/',null=True)
+    follower = models.ForeignKey(UserProfile, null=True)
+    thumbnail = models.CharField(max_length=250, default="N/A")
 
     class Meta:
         verbose_name_plural = 'Teams'
@@ -27,7 +27,7 @@ class Team(models.Model):
         return self.name
 
 class Comment(models.Model):
-    user = models.ForeignKey(User)
+    user = models.ForeignKey(UserProfile)
     text = models.CharField(max_length=200, unique=False,null=False)
     date = models.DateTimeField(auto_now=True)
 
@@ -39,7 +39,7 @@ class Event(models.Model):
     time = models.DateTimeField(auto_now=False,auto_now_add=False)
     picture = models.ImageField(upload_to=True,height_field=100,width_field=200,max_length=100)
     description = models.TextField(max_length=300, default="None")
-    host = models.ForeignKey(User)
+    host = models.ForeignKey(UserProfile)
     comment = models.ForeignKey(Comment)
 
     def __str__(self):

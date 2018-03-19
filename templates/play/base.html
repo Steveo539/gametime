@@ -6,27 +6,39 @@
 	
 	<head lang="en">
 		<meta charset="UTF-8"/>
-		<title>GameTime - {% block title_block %}Base Template{% endblock %}</title>
+		<link rel="stylesheet" href="{% static 'css/base.css' %}" type="text/css">
 	</head>
 	
-	<body>
-	
-		<div>{% block body_block %}Base Template{% endblock %}</div>
+	<title>{% block title_block %}Base Template{% endblock %}</title>
 
-        <div id="nav_bar" style = " list-style-type:none; margin:0; padding:0;">
-            <ul>
-                <li> <a href="/play/about/">About</a><br /></li>
-                <li> <a href="/play/football/">Football</a><br /></li>
-                <li> <a href="/play/american_football/">American Football</a><br /></li>
-                <li> <a href="/play/basketball/">Basketball</a><br /></li>
-                <li> <a href="/play/ice_hockey/">Ice Hockey</a><br /></li>
-                <li> <a href="/play/rugby/">Rugby</a><br /></li>
-                <li> <a href="/play/cricket/">Cricket</a><br /></li>
-                <li> <a href="/play/tennis/">Tennis</a><br /></li>
-                <li> <a href="/play/mma/">MMA</a><br /></li>
-            </ul>
-        </div>
+	<img src="/static/images/logo_blue.jpg" alt="Placeholder logo">
+	<ul class = "navbar">
+		<li><img src="/static/images/logo_nobackground.jpg" alt="Placeholder logo" /></li>
+		<li><a class="active" href="{% url 'index' %}">Home</a></li>
+		<li class="dropdown">
+			<a href="javascript:void(0)" class="dropbtn">Sports</a>
+			<div class="dropdown-content">
+				<a href="{% url 'football' %}">Football</a>
+				<a href="{% url 'american_football' %}">American Football</a>
+				<a href="{% url 'basketball' %}">Basketball</a>
+				<a href="{% url 'ice_hockey' %}">Ice Hockey</a>
+				<a href="{% url 'rugby' %}">Rugby</a>
+				<a href="{% url 'cricket' %}">Cricket</a>
+				<a href="{% url 'tennis' %}">Tennis</a>
+				<a href="{% url 'mma' %}">MMA</a>
+			</div>
+		</li>
+		<li><a href="{% url 'login' %}">Login</a></li>
+		<li><a href="{% url 'signup' %}">Sign Up</a></li>
+	</ul>
+	<body>
+		<div>{% block body_block %}Base Template{% endblock %}</div>
+		
 
 	</body>
-	
+
+	<hr/>
+		<a href="/play/">Home</a>
+		<a href="/play/about/">About</a>
+		<a href="#">Contact Us - Not working atm</a>
 </html>
