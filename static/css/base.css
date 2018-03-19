@@ -3,15 +3,9 @@ body {
 	background-color: #c2f0c2;
 }
 
-<<<<<<< HEAD
 ul.navbar{
 	list-style-type: none;
 	margin : 0;
-=======
-ul {
-	list-style-type: none;
-	margin: 0;
->>>>>>> e7d4a08d95c5dac7f7d7760679505a00e6e31f9c
 	padding: 0;
 	overflow: hidden;
 	background-color: #000333;
@@ -27,11 +21,7 @@ img {
 
 li {
 	float: left;
-<<<<<<< HEAD
 	color: black;
-=======
-	color: white;
->>>>>>> e7d4a08d95c5dac7f7d7760679505a00e6e31f9c
 }
 
 li img{

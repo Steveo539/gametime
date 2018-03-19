@@ -17,11 +17,7 @@ class Team(models.Model):
     sport = models.CharField(max_length=30, unique=False, default="N/A")
     country = models.CharField(max_length=50, unique=False, default="N/A")
     league = models.CharField(max_length=100, unique=False, default="N/A")
-<<<<<<< HEAD
     follower = models.ForeignKey(UserProfile, null=True)
-=======
-    follower = models.ForeignKey(User, null=True)
->>>>>>> e7d4a08d95c5dac7f7d7760679505a00e6e31f9c
     thumbnail = models.CharField(max_length=250, default="N/A")
 
     class Meta:

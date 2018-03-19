@@ -10,7 +10,6 @@ def about(request):
     return render(request, 'play/about.html', context={})
 
 def signup(request):
-<<<<<<< HEAD
 
 	registered = False
 	
@@ -46,23 +45,13 @@ def signup(request):
 def login(request):
     return render(request, 'play/login.html',context={})
 
-=======
-    return render(request, 'play/signup.html',context={})
-
-def login(request):
-    return render(request, 'play/login.html',context={})
->>>>>>> e7d4a08d95c5dac7f7d7760679505a00e6e31f9c
 
 def profile(request):
     return HttpResponse("This is the Profile page")
 
 def football(request):
     
-<<<<<<< HEAD
-    context={"leagues":{"BPL":["Man Utd","Arsenal", "Swansea"],"SPL":["Celtic", "Kilmarnock"],"NIFL":["Cvile", "Glenavon"]}}
-=======
-    context={"leagues":["BPL","SPL", "NIFL"]}
->>>>>>> e7d4a08d95c5dac7f7d7760679505a00e6e31f9c
+    context={"leagues":{"BPL":["Man Utd","Arsenal", "Swansea"],"SPL":["Celtic", "Kilmarnock"],"NIFL":["Cville", "Glenavon"]}}
 
     return render(request, 'play/football.html', context)
 
