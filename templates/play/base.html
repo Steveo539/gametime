@@ -34,13 +34,15 @@
 		<li><a href="{% url 'signup' %}">Sign Up</a></li>
 	</ul>
 	<body>
+		{% block header_block %} {% endblock %}
 		<div>{% block body_block %}Base Template{% endblock %}</div>
 		
 
 	</body>
 
 	<hr/>
-		<a href="/play/">Home</a>
-		<a href="/play/about/">About</a>
+		<a href="{% url 'index' %}">Home</a>
+		<a href="{% url 'about' %}">About</a>
 		<a href="#">Contact Us - Not working atm</a>
+		<a href="{% url 'custom_event' %}">Custom Event</a>
 </html>

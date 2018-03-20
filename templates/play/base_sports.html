@@ -1,0 +1,27 @@
+{% extends 'play/base.html' %}
+
+{% load staticfiles %}
+
+{% block title_block %} Sports {% endblock %}
+
+{% block header_block %} <h1>Sports</h1> {% endblock %}
+
+{% block body_block %}
+
+        <h3> Leagues</h3>
+
+            {% for league,teams in leagues.items %}
+            <ul>
+                <h3>{{league}}</h3>
+					
+				{% for team in teams %}
+						<ul>
+							{{team}}
+						</ul>
+				{% endfor %}
+				
+            </ul>
+
+            {% endfor %}
+
+{% endblock %}

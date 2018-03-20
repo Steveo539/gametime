@@ -1,7 +1,9 @@
 from django.shortcuts import render
-from django.http import HttpResponse
+from django.http import HttpResponse, HttpResponseRedirect
 from django.shortcuts import render
 from play.forms import UserForm, UserProfileForm
+from django.contrib.auth import authenticate, login
+from django.core.urlresolvers import reverse
 # Create your views here.
 def index(request):
     return render(request, 'play/index.html', context={})
@@ -43,11 +45,43 @@ def signup(request):
 	return render(request,'play/signup.html',{'user_form': user_form,'profile_form': profile_form,'registered': registered})
 
 def login(request):
-    return render(request, 'play/login.html',context={})
+    
+	if request.method == 'POST':
+		username = request.POST.get('username')
+		password = request.POST.get('password')
+		
+		
+		try:
+			user = User.objects.get(username = username)
+		except User.DoesNotExist:
+			return HttpResponse("Invalid username")
+		
+		user = authenticate(username=username, password=password)
+		if user:
+			if user.is_active:
+				login(request, user)
+				return HttpResponseRedirect(reverse('index'))
+				
+			else:
+				return HttpResponse("Your Gametime account is disabled.")
+			
+		elif username != username:
+			print("Invalid username: {0}".format(username))
+			return HttpResponse("Invalid username supplied.")
+			
+		else:
+			print("Invalid login details: {0}, {1}".format(username, password))
+			return HttpResponse("Invalid password")
+		
+	else:
+		return render(request, 'play/login.html', {})
 
 
 def profile(request):
     return HttpResponse("This is the Profile page")
+	
+def custom_event(request):
+	return render(request, 'play/custom_event.html', context={})
 
 def football(request):
     
@@ -56,16 +90,43 @@ def football(request):
     return render(request, 'play/football.html', context)
 
 def american_football(request):
-    return HttpResponse("This is the American Football page")
+
+	context = {}
+    
+	return render(request, 'play/american_football.html', context)
+	
 def basketball(request):
-    return HttpResponse("This is the Basketball page")
+    
+	context = {}
+    
+	return render(request, 'play/basketball.html', context)
+	
 def ice_hockey(request):
-    return HttpResponse("This is the Ice Hockey page")
+    
+	context = {}
+    
+	return render(request, 'play/ice_hockey.html', context)
+	
 def rugby(request):
-    return HttpResponse("This is the Rugby page")
-def cricket(requst):
-    return HttpResponse("This is the Cricket page")
+    
+	context = {}
+    
+	return render(request, 'play/rugby.html', context)
+	
+def cricket(request):
+    
+	context = {}
+    
+	return render(request, 'play/cricket.html', context)
+	
 def tennis(request):
-    return HttpResponse("This is the Tennis page")
+    
+	context = {}
+    
+	return render(request, 'play/tennis.html', context)
+	
 def mma(request):
-    return HttpResponse("This is the MMA page")
+    
+	context = {}
+    
+	return render(request, 'play/mma.html', context)

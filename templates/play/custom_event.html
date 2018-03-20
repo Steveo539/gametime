@@ -1,0 +1,34 @@
+{% extends 'play/base.html' %}
+
+{% load staticfiles %}
+
+{% block title_block %}Custom Event{% endblock %}
+
+{% block body_block %}
+	<h3>Custom Event</h3>
+	<h1>5 aside football</h1>
+	
+	<a href="#"> Event Creator </a>
+	<select>
+		<option value=true>Going</option>
+		<option value=false>Not going</option>
+	</select>
+	<input type = "submit" value = "Submit" />
+	<div/>
+	
+	<img src="/static/images/celtic.jpg" alt="Event Image" />
+	<p>Just looking to get together and play some footie. Need 9 others.
+	It'll be good craic so come on ahead and play!
+	
+	This is a very barebones start to the template for displaying an event.
+	Need to organise out the layout and other css.
+	Also need to sort out the Google Maps API</p>
+	
+	<h3>Comments</h3>
+	
+	<dl>
+		<dt><a href="#"> some_user</a></dt><dd><p>Yeah this sounds like a good idea</p></dd>
+		<dt><a href="#"> some_other_user</a></dt><dd><p>I'd love to play</p></dd>
+	</ul>
+	
+{% endblock %}
