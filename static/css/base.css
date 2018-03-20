@@ -19,13 +19,6 @@ img {
 	width: 300px;
 }
 
-p {
-	outline: 2px;
-	outline-color: black;
-	outline-style: solid;
-	padding: 10px;
-}
-
 li {
 	float: left;
 	color: black;
