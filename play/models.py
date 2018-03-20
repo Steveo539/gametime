@@ -40,3 +40,10 @@ class Event(models.Model):
 
     def __str__(self):
         return self.name
+
+class Article(models.Model):
+    title = models.CharField(max_length=500, unique=True)
+    description = models.CharField(max_length=1000,unique=False)
+    url = models.URLField()
+    image = models.CharField(max_length=250, default="N/A")
+    publication_date = models.CharField(max_length=128, unique=False)
