@@ -6,7 +6,7 @@ import json
 import requests
 import urllib
 from urllib.request import urlopen
-from play.models import User,Team,Comment,Event
+from play.models import User,Team,Comment,Event,Article
 
 sports = ["Soccer", "Fighting", "Basketball", "American Football", "Ice Hockey", "Rugby", "Tennis", "Cricket"]
 sport_ids = {"Soccer":102,"Fighting":104,"Basketball":106,
@@ -19,6 +19,8 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 GAMETIME_DIR = os.path.join(BASE_DIR, 'gametime')
 STATIC_DIR = os.path.join(GAMETIME_DIR, 'static')
 LOGOS_DIR = os.path.join(STATIC_DIR,'logos')
+ARTICLES_DIR = os.path.join(STATIC_DIR,'articles')
+
 
 def download_image(name, url):
     cwd = os.getcwd()
@@ -26,6 +28,25 @@ def download_image(name, url):
     urllib.request.urlretrieve(url, name+'.png')
     os.chdir(cwd)
     return (name+'.png')
+
+def download_image_article(name, url):
+    cwd = os.getcwd()
+    os.chdir(ARTICLES_DIR)
+    urllib.request.urlretrieve(url, name+'.jpg')
+    os.chdir(cwd)
+    return (name+'.jpg')
+
+def gather_articles():
+    url = "https://newsapi.org/v2/top-headlines?sources=bbc-sport&apiKey=f40bc449adc04fd48ed5fc6e292831f5"
+    data = json.load(urlopen(url))
+    for i in range(0,len(data['articles'])):
+        title = data['articles'][i]['title']
+        description = data['articles'][i]['description']
+        url = data['articles'][i]['url']
+        img = data['articles'][i]['urlToImage']
+        pub  =data['articles'][i]['publishedAt']
+        #print(title + " " + description + " " + url + " " + img + " " + pub + "\n")
+        add_article(title, description, url, img, pub)
 
 
 def gather_leagues_by_sport():
@@ -46,6 +67,14 @@ def gather_teams_by_league(id):
         #print(team['strTeamBadge'])
         add_team(team['strTeam'], team['strSport'], team['strCountry'], team['strLeague'], team['strTeamBadge'])
 
+def add_article(t_title, t_desc, t_url,t_urlToImage,t_publishedAt):
+    a = Article.objects.get_or_create(title=t_title)[0]
+    a.url = t_url
+    a.description = t_desc
+    a.image = download_image_article(str(a.id),t_urlToImage)
+    a.publication_date = t_publishedAt
+    a.save()
+    return a
 
 def add_team(t_name, t_sport, t_country, t_league, t_thumbnail):
     t = Team.objects.get_or_create(name=t_name)[0]
@@ -57,6 +86,8 @@ def add_team(t_name, t_sport, t_country, t_league, t_thumbnail):
     return t
 
 if __name__ == '__main__':
-    print("Starting 'play' population script...")
+    print("Starting 'play' population script...Gathering articles\n")
+    gather_articles()
+    print("Articles gathered...collecting teams\n")
     gather_leagues_by_sport()
     print("Finished!")
