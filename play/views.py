@@ -85,7 +85,8 @@ def custom_event(request):
 
 def football(request):
 
-    context={"leagues":{"BPL":["Man Utd","Arsenal", "Swansea"],"SPL":["Celtic", "Kilmarnock"],"NIFL":["Cville", "Glenavon"]}}
+    context={"leagues":{"BPL":["Man Utd","Arsenal", "Swansea"],"SPL":["Celtic", "Kilmarnock"],"NIFL":["Cville", "Glenavon"]},
+			 "keywords":"football",}
 
     return render(request, 'play/football.html', context)
 
@@ -97,7 +98,7 @@ def american_football(request):
 
 def basketball(request):
 
-	context = {}
+	context = {"keywords":"basketball"}
 
 	return render(request, 'play/basketball.html', context)
 
@@ -109,24 +110,24 @@ def ice_hockey(request):
 
 def rugby(request):
 
-	context = {}
+	context = {"keywords":"rugby"}
 
 	return render(request, 'play/rugby.html', context)
 
 def cricket(request):
 
-	context = {}
+	context = {"keywords":"cricket"}
 
 	return render(request, 'play/cricket.html', context)
 
 def tennis(request):
 
-	context = {}
+	context = {"keywords":"tennis"}
 
 	return render(request, 'play/tennis.html', context)
 
 def mma(request):
 
-	context = {}
+	context = {"keywords":"mma"}
 
 	return render(request, 'play/mma.html', context)

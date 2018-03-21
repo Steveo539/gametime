@@ -1,14 +1,19 @@
 
-var url = 'https://newsapi.org/v2/top-headlines?' +
-          'sources=bbc-sport&' +
-		  'pageSize=5&' +
-          'apiKey=be707787636945f1ae6ce3f65a4e2a28';
+function requestArticles(keywords, numArticles)
+{
+	url =
+		'https://newsapi.org/v2/top-headlines?' +
+		'sources=bbc-sport&' +
+		'q=' + keywords + '&' +
+		'pageSize=' + numArticles + '&' +
+		'apiKey=be707787636945f1ae6ce3f65a4e2a28';
 		  
-var request = new Request(url);
-fetch(request)
-	.then(function(response){return response.json();})
-	.then(function(data){renderArticles(data.articles);})
-
+	request = new Request(url);
+	fetch(request)
+		.then(function(response){return response.json();})
+		.then(function(data){renderArticles(data.articles);})
+}
+	
 function renderArticles(articles)
 {
 	for (i in articles)
@@ -20,13 +25,13 @@ function renderArticles(articles)
 function renderArticle(article)
 {
 	document.getElementById('news').innerHTML +=
-	'<div>' +
-		'<a href="' + article.url + '">' +
-			'<img src ="' + article.urlToImage + '"/>' +
-		'</a>' +
-		'<a href="' + article.url + '">' +
-			'<h1>' + article.title + '</h1>' +
-		'</a>' +
-		'<p>' + article.description + '</p>'+
-	'</div>'
+		'<div>' +
+			'<a href="' + article.url + '">' +
+				'<img src ="' + article.urlToImage + '"/>' +
+			'</a>' +
+			'<a href="' + article.url + '">' +
+				'<h1>' + article.title + '</h1>' +
+			'</a>' +
+			'<p>' + article.description + '</p>'+
+		'</div>'
 }

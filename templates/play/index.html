@@ -7,8 +7,11 @@
 {% block header_block %} <h1>Index</h1> {% endblock %}
 
 {% block body_block %}
+
 	<p>This is the homepage</p>
 	
 	<div id="news"></div>
-	<script type="text/javascript" src="{% static 'scripts/news.js' %}"></script>
+	<script src="{% static 'scripts/news.js' %}"></script>
+	<script>requestArticles(' ', 5)</script>
+	
 {% endblock %}
