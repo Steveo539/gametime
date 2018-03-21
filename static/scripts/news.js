@@ -11,11 +11,10 @@ fetch(request)
 
 function renderArticles(articles)
 {
-	renderArticle(articles[0]);
-	renderArticle(articles[1]);
-	renderArticle(articles[2]);
-	renderArticle(articles[3]);
-	renderArticle(articles[4]);
+	for (i in articles)
+	{
+		renderArticle(articles[i]);
+	}
 }
 
 function renderArticle(article)
