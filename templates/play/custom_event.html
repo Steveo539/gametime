@@ -25,6 +25,18 @@
 			Need to organise out the layout and other css.
 				Also need to sort out the Google Maps API</p></span>
 			<span><img class = "event" src="/static/images/googlemaps.png" alt = "Google Maps API"></span>
+
+			<span class="map" id="gmap">google map api</span>
+				 <script type="text/javascript">
+				 	var text = document.getElementById("gmap").innerTEXT;
+      				function initMap() {
+       				var loc = {lat: -25.363, lng: 131.044};
+        			var map = new google.maps.Map(document.getElementById("gmap"), {zoom: 8, center: loc});
+        			var marker = new google.maps.Marker({position: loc, map: map});
+      				}
+    			</script>
+      			<script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyA2NNm_I5JKu4PyfaTrTKrJPpX85CmHzFM&callback=initMap"></script>
+			
 		</span>
 
 		<span class = "comments">
