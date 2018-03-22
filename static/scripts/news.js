@@ -1,11 +1,11 @@
 
-function requestArticles(keywords, numArticles)
+function requestArticles(sources, keywords, pageSize)
 {
 	url =
 		'https://newsapi.org/v2/top-headlines?' +
-		'sources=bbc-sport&' +
+		'sources=' + sources + '&' +
 		'q=' + keywords + '&' +
-		'pageSize=' + numArticles + '&' +
+		'pageSize=' + pageSize + '&' +
 		'apiKey=be707787636945f1ae6ce3f65a4e2a28';
 		  
 	request = new Request(url);
@@ -13,17 +13,26 @@ function requestArticles(keywords, numArticles)
 		.then(function(response){return response.json();})
 		.then(function(data){renderArticles(data.articles);})
 }
-	
+
 function renderArticles(articles)
 {
-	for (i in articles)
-	{
-		renderArticle(articles[i]);
+	if (articles.length != 0) {
+		document.getElementById('news').innerHTML += "<h3>News</h3>";
+		for (i in articles)
+		{
+			renderArticle(articles[i]);
+		}
 	}
 }
 
 function renderArticle(article)
 {
+	if (article.title == null || article.description == null
+			|| article.url == null || article.urlToImage == null)
+	{
+		return;
+	}
+	
 	document.getElementById('news').innerHTML +=
 		'<div>' +
 			'<a href="' + article.url + '">' +

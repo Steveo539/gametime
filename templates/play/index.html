@@ -4,16 +4,14 @@
 
 {% block title_block %}Index{% endblock %}
 
-{% block header_block %} <h1>Index</h1> {% endblock %}
+{% block header_block %} <h1>Home</h1> {% endblock %}
 
 {% block body_block %}
 
 	<p>This is the homepage</p>
 	
-	<h3> News </h3>
-	
 	<div id="news"></div>
 	<script src="{% static 'scripts/news.js' %}"></script>
-	<script>requestArticles(' ', 20)</script>
+	<script>requestArticles('bbc-sport', '', 10)</script>
 	
 {% endblock %}

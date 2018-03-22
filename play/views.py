@@ -85,49 +85,73 @@ def custom_event(request):
 
 def football(request):
 
-    context={"leagues":{"BPL":["Man Utd","Arsenal", "Swansea"],"SPL":["Celtic", "Kilmarnock"],"NIFL":["Cville", "Glenavon"]},
-			 "keywords":"+football",}
+    context = {
+		"leagues":{"BPL":["Man Utd","Arsenal", "Swansea"],"SPL":["Celtic", "Kilmarnock"],"NIFL":["Cville", "Glenavon"]},
+		"sources":"bbc-sport,talksport,the-sport-bible",
+		"keywords":"football",
+	}
 
     return render(request, 'play/football.html', context)
 
 def american_football(request):
 
-	context = {"keywords":"+american+football"}
+	context = {
+		"sources":"nfl-news",
+		"keywords":"",
+	}
 
 	return render(request, 'play/american_football.html', context)
 
 def basketball(request):
 
-	context = {"keywords":"+basketball"}
+	context = {
+		"sources":"",
+		"keywords":"",
+	}
 
 	return render(request, 'play/basketball.html', context)
 
 def ice_hockey(request):
 
-	context = {"keywords":"+ice+hockey"}
+	context = {
+		"sources":"",
+		"keywords":"",
+	}
 
 	return render(request, 'play/ice_hockey.html', context)
 
 def rugby(request):
 
-	context = {"keywords":"+rugby"}
+	context = {
+		"sources":"bbc-sport,talksport,the-sport-bible",
+		"keywords":"rugby",
+	}
 
 	return render(request, 'play/rugby.html', context)
 
 def cricket(request):
 
-	context = {"keywords":"+cricket"}
+	context = {
+		"sources":"bbc-sport,talksport,the-sport-bible",
+		"keywords":"cricket",
+	}
 
 	return render(request, 'play/cricket.html', context)
 
 def tennis(request):
 
-	context = {"keywords":"+tennis"}
+	context = {
+		"sources":"bbc-sport,talksport,the-sport-bible",
+		"keywords":"tennis",
+	}
 
 	return render(request, 'play/tennis.html', context)
 
 def mma(request):
 
-	context = {"keywords":"+mma"}
+	context = {
+		"sources":"",
+		"keywords":"",
+	}
 
 	return render(request, 'play/mma.html', context)

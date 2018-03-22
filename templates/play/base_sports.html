@@ -8,7 +8,7 @@
 
 {% block body_block %}
 
-        <h3> Leagues</h3>
+        <h3>Leagues</h3>
 
             {% for league,teams in leagues.items %}
             <ul>
@@ -23,11 +23,9 @@
             </ul>
 
             {% endfor %}
-
-		<h3> News </h3>
 		
 		<div id="news"></div>
 		<script src="{% static 'scripts/news.js' %}"></script>
-		<script>requestArticles('{{ keywords }}', 5)</script>
+		<script>requestArticles('{{ sources }}', '{{ keywords }}', 20)</script>
 		
 {% endblock %}
