@@ -24,7 +24,7 @@ class Team(models.Model):
 
 class Comment(models.Model):
     #user = models.ForeignKey(UserProfile)
-    text = models.CharField(max_length=200, unique=False,null=False)
+    text = models.CharField(max_length=200, unique=False,null=True)
     date = models.DateTimeField(auto_now=True)
 
     def __str__(self):
@@ -32,8 +32,8 @@ class Comment(models.Model):
 
 class Event(models.Model):
     name = models.CharField(max_length=128, unique=False)
-    time = models.DateTimeField(auto_now=False,auto_now_add=False)
-    picture = models.ImageField(upload_to=True,height_field=100,width_field=200,max_length=100)
+    time = models.DateTimeField( auto_now=False,auto_now_add=False)
+    picture = models.ImageField(upload_to='event_images', blank=True)
     description = models.TextField(max_length=300, default="None")
     #host = models.ForeignKey(UserProfile)
     comment = models.ForeignKey(Comment)

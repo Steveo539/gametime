@@ -1,7 +1,7 @@
 from django.shortcuts import render
 from django.http import HttpResponse, HttpResponseRedirect
 from django.shortcuts import render
-from play.forms import UserForm, UserProfileForm
+from play.forms import UserForm, UserProfileForm, EventForm
 from django.contrib.auth import authenticate, login
 from django.core.urlresolvers import reverse
 # Create your views here.
@@ -87,8 +87,10 @@ def create_event(request):
 		event_form = EventForm(data=request.POST)
 
 		if event_form.is_valid():
+
+			if 'picture' in request.FILES:
+				profile.picture = request.FILES['picture']
 			event = event_form.save()
-			event.save()
 
 		else:
 			print(event_form.errors)
