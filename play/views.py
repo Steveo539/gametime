@@ -3,6 +3,7 @@ from django.http import HttpResponse, HttpResponseRedirect
 from django.shortcuts import render
 from play.forms import UserForm, UserProfileForm, EventForm
 from django.contrib.auth import authenticate, login
+from django.contrib.auth.models import User
 from django.core.urlresolvers import reverse
 # Create your views here.
 def index(request):
@@ -57,8 +58,7 @@ def login(request):
 		user = authenticate(username=username, password=password)
 		if user:
 			if user.is_active:
-				login(request, user)
-				return HttpResponseRedirect(reverse('index'))
+				return HttpResponse("<p>Welcome " + username + "!</p><a href=\"/index\">Return to home</a>")
 
 			else:
 				return HttpResponse("Your Gametime account is disabled.")
