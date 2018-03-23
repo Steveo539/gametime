@@ -102,7 +102,7 @@ def create_event(request):
 def football(request):
 
     context = {
-		"leagues":{"BPL":["Man Utd","Arsenal", "Swansea"],"SPL":["Celtic", "Kilmarnock"],"NIFL":["Cville", "Glenavon"]},
+		"leagues":{"BPL":["Man Utd","Arsenal", "Swansea"],"SPL":["Celtic", "Kilmarnock"],"NIFL":["Cliftonville", "Glenavon"]},
 		"sources":"bbc-sport,talksport,the-sport-bible",
 		"keywords":"football",
 	}

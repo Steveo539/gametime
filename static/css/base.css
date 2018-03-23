@@ -78,12 +78,16 @@ li.dropdown {
 	display: block;
 }
 
+hr {
+	margin-top: 60px;
+}
 .footer {
-  position: absolute;
-  bottom: 0;
-  width: 100%;
-  height: 60px;
-  line-height: 60px;
+  	position: absolute;
+  	bottom: 0;
+  	width: 100%;
+  	height: 60px;
+  	line-height: 60px;
+	padding-top: 60px;
 }
 
 .container {

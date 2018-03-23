@@ -27,11 +27,11 @@ dd {
 }
 
 span.comments{
-    position: relative;
-    top: 400px;
+    float: left;
 }
+
 
 .map {
     width: 100%;
     height: 400px;
-      }
+}
