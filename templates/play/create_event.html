@@ -1,0 +1,19 @@
+{% extends 'play/base.html' %}
+
+{% load staticfiles %}
+
+{% block title_block %}Create an Event{% endblock %}
+
+{% block header_block %} <h1>Create an Event</h1> {% endblock %}
+
+{% block body_block %}
+
+    <form id = "event_form" method="post" action="/play/create_event/">
+
+        {% csrf_token %}
+        {{ event_form.as_p }}
+
+        <input type="submit" name="submit" value="Create Event" />
+    </form>
+
+{% endblock %}

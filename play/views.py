@@ -20,8 +20,6 @@ def signup(request):
 		user_form = UserForm(data=request.POST)
 		profile_form = UserProfileForm(data=request.POST)
 
-		#Profile form is invalid for some reason
-		#Error message says profile_pic is required but I am unable to upload one
 		if user_form.is_valid() and profile_form.is_valid():
 
 			user = user_form.save()
@@ -82,6 +80,22 @@ def profile(request):
 
 def custom_event(request):
 	return render(request, 'play/custom_event.html', context={})
+
+def create_event(request):
+
+	if request.method == 'POST':
+		event_form = EventForm(data=request.POST)
+
+		if event_form.is_valid():
+			event = event_form.save()
+			event.save()
+
+		else:
+			print(event_form.errors)
+	else:
+		event_form = EventForm()
+
+	return render(request, 'play/create_event.html', context={"event_form": event_form})
 
 def football(request):
 
