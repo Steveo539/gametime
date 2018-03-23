@@ -58,7 +58,7 @@ def login(request):
 		user = authenticate(username=username, password=password)
 		if user:
 			if user.is_active:
-				return HttpResponse("<p>Welcome " + username + "!</p><a href=\"/index\">Return to home</a>")
+				return HttpResponse("<p>Welcome " + username + "!</p><a href=\"play/\">Return to home</a>")
 
 			else:
 				return HttpResponse("Your Gametime account is disabled.")
@@ -102,7 +102,7 @@ def create_event(request):
 def football(request):
 
     context = {
-		"leagues":{"BPL":["Man Utd","Arsenal", "Swansea"],"SPL":["Celtic", "Kilmarnock"],"NIFL":["Cliftonville", "Glenavon"]},
+		"leagues":{"BPL":["Man Utd","Arsenal", "Swansea"],"SPL":["Celtic", "Kilmarnock"],"NIFL":["Cville", "Glenavon"]},
 		"sources":"bbc-sport,talksport,the-sport-bible",
 		"keywords":"football",
 	}
