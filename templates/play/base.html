@@ -3,19 +3,19 @@
 {% load staticfiles %}
 
 <html>
-	
+
 	<head lang="en">
 		<meta charset="UTF-8"/>
 		<link rel="stylesheet" href="{% static 'css/base.css' %}" type="text/css">
 		<link rel="stylesheet" href="{% static 'css/event.css' %}" type="text/css">
-		
+
 	</head>
-	
+
 	<title>{% block title_block %}Base Template{% endblock %}</title>
 
 	<img src="/static/images/logo_blue.jpg" alt="Placeholder logo">
 
-	<ul class = "navbar">	
+	<ul class = "navbar">
 
 		<li><img src="/static/images/logo_nobackground.jpg" alt="Placeholder logo" /></li>
 		<li><a class="active" href="{% url 'index' %}">Home</a></li>
@@ -33,17 +33,26 @@
 			</div>
 		</li>
 		<li><a href="{% url 'login' %}">Login</a></li>
+	{% if user.is_authenticated %}
+		authenticated
+		<li><a href="{% url 'user_logout' %}">Logout</a></li>
+	{% endif %}
 		<li><a href="{% url 'signup' %}">Sign Up</a></li>
 		<li><a href="{% url 'custom_event' %}">Custom Event</a></li>
 		<li><a href="{% url 'create_event' %}">Create an Event</a></li>
 	</ul>
 	<body>
+		{% if user.is_authenticated %}
+			Welcome {{ user.username }}
+		{% else %}
+			Welcome to GameTime
+		{% endif %}
 		{% block header_block %} {% endblock %}
 		<div>{% block body_block %}Base Template{% endblock %}</div>
-		
+
 
 	</body>
-	
+
 	<footer class="footer">
 		<div class="container">
 			<span class="text-muted">
@@ -53,7 +62,7 @@
 					<a href="{% url 'about' %}">About</a>
 				</ul>
 			</span>
-		</div>		
+		</div>
     </footer>
-	
+
 </html>

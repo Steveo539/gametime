@@ -2,11 +2,18 @@ from django.shortcuts import render
 from django.http import HttpResponse, HttpResponseRedirect
 from django.shortcuts import render
 from play.forms import UserForm, UserProfileForm, EventForm
-from django.contrib.auth import authenticate, login
+from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.models import User
 from django.core.urlresolvers import reverse
+from django.contrib.auth.decorators import login_required
 # Create your views here.
+def user_logout(request):
+    logout(request)
+    return HttpResponseRedirect(reverse(index))
+
 def index(request):
+    if not request.user.is_authenticated():
+        return render(request, 'play/index.html', context={})
     return render(request, 'play/index.html', context={})
 
 def about(request):
@@ -77,7 +84,7 @@ def login(request):
 
 def profile(request):
     return HttpResponse("This is the Profile page")
-
+@login_required
 def custom_event(request):
 	return render(request, 'play/custom_event.html', context={})
 
