@@ -33,7 +33,7 @@
 			</div>
 		</li>
 		<li><a href="{% url 'login' %}">Login</a></li>
-	{% if user.is_authenticated %}
+	{% if user.is_active %}
 		authenticated
 		<li><a href="{% url 'user_logout' %}">Logout</a></li>
 	{% endif %}
@@ -42,12 +42,17 @@
 		<li><a href="{% url 'create_event' %}">Create an Event</a></li>
 	</ul>
 	<body>
+
+		<p>
 		{% if user.is_authenticated %}
 			Welcome {{ user.username }}
 		{% else %}
 			Welcome to GameTime
 		{% endif %}
+		</p>
+
 		{% block header_block %} {% endblock %}
+
 		<div>{% block body_block %}Base Template{% endblock %}</div>
 
 

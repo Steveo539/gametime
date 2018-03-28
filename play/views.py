@@ -9,11 +9,13 @@ from django.contrib.auth.decorators import login_required
 # Create your views here.
 def user_logout(request):
     logout(request)
-    return HttpResponseRedirect(reverse(index))
+    return render(request, 'play/logout_response.html', {
+					"message":"You successfully logged out.",
+					"link":"/play/",
+					"link_message":"Return home",
+				})
 
 def index(request):
-    if not request.user.is_authenticated():
-        return render(request, 'play/index.html', context={})
     return render(request, 'play/index.html', context={})
 
 def about(request):
@@ -50,7 +52,7 @@ def signup(request):
 
 	return render(request,'play/signup.html',{'user_form': user_form,'profile_form': profile_form,'registered': registered})
 
-def login(request):
+def login_view(request):
 
 	if request.method == 'POST':
 		username = request.POST.get('username')
@@ -60,15 +62,17 @@ def login(request):
 		try:
 			user = User.objects.get(username = username)
 		except User.DoesNotExist:
+			print("Invalid username: {0}".format(username))
 			return render(request, 'play/login_response.html', {
 					"message":"Invalid username supplied.",
 					"link":"/play/login/",
-					"link_message":"Try logging in again.",
+					"link_message":"Try logging in again",
 				})
 
 		user = authenticate(username=username, password=password)
 		if user:
 			if user.is_active:
+				login(request, user)
 				return render(request, 'play/login_response.html', {
 						"message":"You successfully logged in.",
 						"link":"/play/",
@@ -81,14 +85,6 @@ def login(request):
 						"link":"/play/login/",
 						"link_message":"Try logging with a different account",
 					})
-
-		elif username != username:
-			print("Invalid username: {0}".format(username))
-			return render(request, 'play/login_response.html', {
-					"message":"Invalid username supplied.",
-					"link":"/play/login/",
-					"link_message":"Try logging in again",
-				})
 
 		else:
 			print("Invalid login details: {0}, {1}".format(username, password))
