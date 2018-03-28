@@ -60,23 +60,43 @@ def login(request):
 		try:
 			user = User.objects.get(username = username)
 		except User.DoesNotExist:
-			return HttpResponse("Invalid username")
+			return render(request, 'play/login_response.html', {
+					"message":"Invalid username supplied.",
+					"link":"/play/login/",
+					"link_message":"Try logging in again.",
+				})
 
 		user = authenticate(username=username, password=password)
 		if user:
 			if user.is_active:
-				return HttpResponse("<p>Welcome " + username + "!</p><a href=\"play/\">Return to home</a>")
+				return render(request, 'play/login_response.html', {
+						"message":"You successfully logged in.",
+						"link":"/play/",
+						"link_message":"Return home",
+					})
 
 			else:
-				return HttpResponse("Your Gametime account is disabled.")
+				return render(request, 'play/login_response.html', {
+						"message":"Your Gametime account is disabled.",
+						"link":"/play/login/",
+						"link_message":"Try logging with a different account",
+					})
 
 		elif username != username:
 			print("Invalid username: {0}".format(username))
-			return HttpResponse("Invalid username supplied.")
+			return render(request, 'play/login_response.html', {
+					"message":"Invalid username supplied.",
+					"link":"/play/login/",
+					"link_message":"Try logging in again",
+				})
 
 		else:
 			print("Invalid login details: {0}, {1}".format(username, password))
-			return HttpResponse("Invalid password")
+			return render(request, 'play/login_response.html', {
+					"message":"Invalid password supplied.",
+					"link":"/play/login/",
+					"link_message":"Try logging in again"
+				})
 
 	else:
 		return render(request, 'play/login.html', {})
