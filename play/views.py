@@ -9,11 +9,7 @@ from django.contrib.auth.decorators import login_required
 # Create your views here.
 def user_logout(request):
     logout(request)
-    return render(request, 'play/logout_response.html', {
-					"message":"You successfully logged out.",
-					"link":"/play/",
-					"link_message":"Return home",
-				})
+    return render(request, 'play/logout_response.html', context={})
 
 def index(request):
     return render(request, 'play/index.html', context={})
